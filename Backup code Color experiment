@@ -1,0 +1,128 @@
+package main;
+
+import java.util.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Game extends JFrame{
+	
+	JPanel fieldPanel;
+	JPanel controlPanel;
+	
+	static final long serialVersionUID = 1L;
+	public Game(){
+		super("Minesweeper");
+		
+		/*
+		ArrayList<MineButton> buttonList = new ArrayList<>();
+		MineButton redButton = new MineButton("Red");
+		MineButton greenButton = new MineButton("Green");
+		MineButton blueButton = new MineButton("Blue");
+		MineButton darkerButton = new MineButton("Darker");
+		MineButton brighterButton = new MineButton("Brighter");
+		
+		buttonList.add(redButton);
+		buttonList.add(greenButton);
+		buttonList.add(blueButton);
+		buttonList.add(darkerButton);
+		buttonList.add(brighterButton);*/
+		
+		fieldPanel = new JPanel();
+		fieldPanel.setSize(200,200);		
+		fieldPanel.setBackground(new Color(255,255,255));
+		fieldPanel.setOpaque(true);
+		
+		/*
+		controlPanel = new JPanel();
+		controlPanel.setSize(200,40);
+		
+		setButtonEvents(buttonList, controlPanel);
+		
+		for(MineButton button : buttonList){
+			controlPanel.add(button);
+		}*/
+				
+		ArrayList<MineButton> mineList = new ArrayList<>();
+		for(int i=0; i < 20; i++){
+			for(int j=0; j < 20; j++){
+				mineList.add(new MineButton("", i, j));
+				mineList.get(mineList.size()-1).setMineSize();
+				fieldPanel.add(mineList.get(mineList.size()-1));
+			}
+		}
+		
+		GridLayout fieldGL = new GridLayout(20,20);
+		fieldPanel.setLayout(fieldGL);
+		
+		GridLayout superGL = new GridLayout(1,0);
+		setLayout(superGL);
+
+		add(fieldPanel);
+		//add(controlPanel);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(400, 400);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new Game();
+
+	}
+	
+	/*
+	public ArrayList<MineButton> setButtonEvents(ArrayList<MineButton> buttonList, JPanel panel){
+		for(int i = 0; i < buttonList.size(); i++){
+			MineButton button = buttonList.get(i);
+			button.setToolTipText(button.text());
+			switch (i){
+				case 0:
+					button.addMouseListener(new MouseAdapter(){
+						@Override
+						public void mousePressed(MouseEvent me)	{
+							panel.setBackground(new Color(255,0,0));
+						}
+					});
+					break;
+				case 1:
+					button.addMouseListener(new MouseAdapter(){
+						@Override
+						public void mousePressed(MouseEvent me)	{
+							panel.setBackground(new Color(0,255,0));
+						}
+					});
+					break;
+				case 2:
+					button.addMouseListener(new MouseAdapter(){
+						@Override
+						public void mousePressed(MouseEvent me)	{
+							panel.setBackground(new Color(0,0,255));
+						}
+					});
+					break;
+				case 3:
+					button.addMouseListener(new MouseAdapter(){
+						@Override
+						public void mousePressed(MouseEvent me)	{
+							panel.setBackground(panel.getBackground().darker());
+						}
+					});
+					break;
+				case 4:
+					button.addMouseListener(new MouseAdapter(){
+						@Override
+						public void mousePressed(MouseEvent me)	{
+							panel.setBackground(panel.getBackground().brighter());
+						}
+					});
+					break;
+				
+			}
+			buttonList.set(i, button);
+		}
+		return buttonList;
+	}
+	*/
+	
+}
