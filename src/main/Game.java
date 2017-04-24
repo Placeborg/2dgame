@@ -10,8 +10,8 @@ public class Game extends JFrame{
 	
 	JPanel fieldPanel;
 	JPanel controlPanel;
-	static int width = 20;
-	static int height= 20;
+	static int width = 40;
+	static int height= 40;
 	
 	MineField mines;
 	static ArrayList<MineButton> buttonList;
@@ -21,8 +21,24 @@ public class Game extends JFrame{
 				
 		MineField mines = new MineField(width,height);
 		
+		try {
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		fieldPanel = new JPanel();
-		fieldPanel.setSize(200,200);		
+//		fieldPanel.setSize(400,400);		
 		fieldPanel.setBackground(new Color(255,255,255));
 		fieldPanel.setOpaque(true);
 		
@@ -35,7 +51,7 @@ public class Game extends JFrame{
 			}
 		}
 		
-		GridLayout fieldGL = new GridLayout(20,20);
+		GridLayout fieldGL = new GridLayout(width,height);
 		fieldPanel.setLayout(fieldGL);
 		
 		GridLayout superGL = new GridLayout(1,0);
@@ -43,7 +59,7 @@ public class Game extends JFrame{
 
 		add(fieldPanel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(400, 400);
+		setSize(width*20, height*20);
 		setVisible(true);
 	}
 	
