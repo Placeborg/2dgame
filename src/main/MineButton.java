@@ -38,6 +38,7 @@ class MineButton extends JButton{
 							setIcon(imgIcon);
 							setDisabledIcon(imgIcon);
 							setEnabled(false);
+							Game.explodeMine();
 						} catch (Exception e){
 							System.out.println(e);
 						}
@@ -56,13 +57,27 @@ class MineButton extends JButton{
 							setIcon(imgIcon);
 							setDisabledIcon(imgIcon);
 							originalValue = mines.field[x][y];
+							if(originalValue=='x'){
+								Game.mineFound();
+							}
 							mines.field[x][y] = 'f';
+							Game.addFlag();
+							Game.flagIndicator.setText("Mines found: " + Game.flags);
+							//Game.flagIndicator.repaint();
+							System.out.println(Game.minesFound);
 						} catch (Exception e){
 							System.out.println(e);
 						}
 					} else if(mines.field[x][y] == 'f'){
 							mines.field[x][y] = originalValue;
+							if(originalValue=='x'){
+								Game.minesFound--;
+							}
 							setIcon(null);
+							Game.subtractFlag();
+							Game.flagIndicator.setText("Mines found: " + Game.flags);
+							//Game.flagIndicator.repaint();
+							System.out.println(Game.minesFound);
 					}
 				}
 			}

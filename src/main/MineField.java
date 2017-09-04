@@ -10,8 +10,8 @@ public class MineField {
 
 	public MineField(int x, int y){
 		field = new char[x][y];
-		int totalMines = ((x+1)*(y+1))/10;
-		System.out.println(totalMines);
+		int totalMines = ((x)*(y))/10;
+		Game.totalMines = totalMines;
 
 		int i = 0;
 		while(i<totalMines){
